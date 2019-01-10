@@ -1,0 +1,28 @@
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.container {
+    height: 80vh;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#function {
+    background-color: black;
+    color: white;
+}
+#results {
+    border: 1px solid black;
+}
+#function, #results {
+    height: 20vh;
+}
+#arguments, #expectation {
+    width: 100%;
+}
+.wrap {
+    width: 100%;
+}
