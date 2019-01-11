@@ -10,4 +10,6 @@ window.onload = function() {
       theme: "night"
     });
   });
+  myFunction.focus();
+  myFunction.setCursor({ line: 1, ch: 1 });
 };
