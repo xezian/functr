@@ -4,11 +4,15 @@
 <head>
     <meta charset="utf-8">
     <!-- Added a link to app.js -->
-    <script src="assets/js/javascript.js"></script>
+    <script data-main="assets/js/javascript.js" src="assets/js/require.js"></script>
     <!-- Added a link to meyerweb reset -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- codemirror css -->
+    <link rel="stylesheet" href="assets/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="assets/codemirror/theme/night.css">
     <!-- Added a link to stylesheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="shortcut icon" href="assets/images/f.ico">
     <title>test_playground</title>
 </head>
 
@@ -16,8 +20,8 @@
     <div class="container">
         <label class="wrap" for="function">
             function:
-            <pre contenteditable="true" id="function">
-                    </pre>
+            <textarea id="function">
+                    </textarea>
         </label>
         <label class="wrap" for="arguments">
             arguments:

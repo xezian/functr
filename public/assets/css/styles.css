@@ -4,20 +4,15 @@ body {
 }
 .container {
     height: 80vh;
+    width: 95%;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
-#function {
-    background-color: black;
-    color: white;
-}
 #results {
     border: 1px solid black;
-}
-#function, #results {
     height: 20vh;
 }
 #arguments, #expectation {
