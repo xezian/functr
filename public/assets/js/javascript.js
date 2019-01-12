@@ -1,15 +1,11 @@
-window.onload = function() {
-  const myFunction = document.getElementById("function");
-  require([
-    "../codemirror/lib/codemirror",
-    "../codemirror/mode/javascript/javascript"
-  ], function(CodeMirror) {
-    CodeMirror.fromTextArea(myFunction, {
-      lineNumbers: true,
-      mode: "javascript",
-      theme: "night"
-    });
-  });
-  myFunction.focus();
-  myFunction.setCursor({ line: 1, ch: 1 });
-};
+const myFunction = document.getElementById("function");
+
+const edit = CodeMirror.fromTextArea(myFunction, {
+  mode: "javascript",
+  autorefresh: true,
+  autofocus: true,
+  lineNumbers: true,
+  theme: "night"
+});
+edit.setValue("// write your function\n");
+edit.setCursor({ line: 2, ch: 1 });

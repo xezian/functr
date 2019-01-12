@@ -13,10 +13,11 @@ body {
 }
 #results {
     border: 1px solid black;
-    height: 20vh;
+    min-height: 20vh;
 }
-#arguments, #expectation {
+#name, #arguments, #expectation {
     width: 100%;
+    font-family: 'Bitstream Vera Sans Mono', monospace; 
 }
 .wrap {
     width: 100%;

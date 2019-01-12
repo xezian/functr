@@ -6,10 +6,16 @@
   "repository": "git@github.com:xezian/test_playground.git",
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "chai": "^4.2.0",
+    "codemirror": "^5.42.2",
     "express": "^4.16.4",
     "mocha": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
 }
