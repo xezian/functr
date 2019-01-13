@@ -1,9 +1,9 @@
 {
-  "name": "test_playground",
+  "name": "functr",
   "version": "1.0.0",
   "description": "a playground for test",
   "main": "index.js",
-  "repository": "git@github.com:xezian/test_playground.git",
+  "repository": "git@github.com:xezian/functr.git",
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
   "scripts": {
