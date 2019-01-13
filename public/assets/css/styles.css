@@ -11,11 +11,15 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+#submit, #clear {
+    margin: 2px 0;
+}
 #results {
     border: 1px solid black;
+    word-wrap: break-word;
     min-height: 20vh;
 }
-#name, #arguments, #expectation {
+#name, #arguments, #expectation, #results {
     width: 100%;
     font-family: 'Bitstream Vera Sans Mono', monospace; 
 }
