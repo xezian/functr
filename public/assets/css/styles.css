@@ -1,6 +1,7 @@
 body {
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
+    font-size: 3vh;
 }
 .container {
     height: 80vh;
@@ -11,8 +12,12 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+#function {
+    font-size: 2vh;
+}
 #submit, #clear {
     margin: 2px 0;
+    font-size: 3vh;
 }
 #results {
     border: 1px solid black;
