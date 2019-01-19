@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const assembleAndTestFunction = require("./methods/test-function");
 const app = express();
-const port = 3000;
+const port = 6789;
 
 const staticPath = path.join(__dirname, "/public");
 
