@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const testFunction = require("./methods/test-function").testFunction;
 const refreshFile = require("./methods/test-function").refreshFile;
 const app = express();
-const port = 3000;
+const port = 6789;
 
 const staticPath = path.join(__dirname, "/public");
 
