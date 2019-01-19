@@ -12,13 +12,13 @@ const testFunction = data => {
           fs.appendFile(
             "./methods/tmp/test.js",
             `const testFunc = () => {
-  const result = ${data.funcName}(${data.args});
-    if (result === ${data.expects}){
-      return 'YES! results: ' + result + ' === ${data.expects}';
-    } else {
-      return 'NO! results: ' + result + ' !== ${data.expects}'; 
-    };
+const result = ${data.funcName}(${data.args});
+  if (result === ${data.expects}){
+    return 'YES! results: ' + result + ' === ${data.expects}';
+  } else {
+    return 'NO! results: ' + result + ' !== ${data.expects}'; 
   };
+};
 module.exports = testFunc;
 `,
             async err => {
@@ -43,7 +43,7 @@ function refreshFile() {
   return new Promise((res, rej) => {
     fs.writeFile(
       "./methods/tmp/test.js",
-      `const assert = require('chai').assert;`,
+      `// this is a new file\n`,
       err => {
         if (err) {
           rej(err);
@@ -54,4 +54,4 @@ function refreshFile() {
   });
 }
 
-module.exports = testFunction;
+module.exports = { refreshFile, testFunction };
