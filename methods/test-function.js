@@ -1,9 +1,10 @@
 const fs = require("fs");
+const refreshFile = require("./refresh-file");
 
 const testFunction = data => {
   console.log(data);
   return new Promise((res, rej) => {
-    refreshFile()
+    refreshFile("./methods/tmp/test.js")
       .then(responz => {
         fs.appendFile("./methods/tmp/test.js", data.code + "\n", err => {
           if (err) {
@@ -39,19 +40,4 @@ module.exports = testFunc;
   });
 };
 
-function refreshFile() {
-  return new Promise((res, rej) => {
-    fs.writeFile(
-      "./methods/tmp/test.js",
-      `// this is a new file\n`,
-      err => {
-        if (err) {
-          rej(err);
-        }
-        res();
-      }
-    );
-  });
-}
-
-module.exports = { refreshFile, testFunction };
+module.exports = testFunction;
