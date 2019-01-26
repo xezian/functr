@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import CodeMirror from "react-codemirror";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/night.css";
 import styled from "styled-components";
-import API from './API/API'
+import API from "./API/API";
 
 const Container = styled.div`
   .CodeMirror {
@@ -20,28 +20,29 @@ const SendItButton = styled.button`
 
 export default class CodeMirrorContainer extends Component {
   state = {
-    codemirror: ''
-  }
+    codemirror: ""
+  };
   sendIt = () => {
-    API.submitCode(this.state.codemirror).then((res) => {
-      console.log(res);
-    })
-  }
-  handleChange = async (newCode) => {
-    await this.setState({codemirror:newCode});
-  }
+    API.submitCode(this.state.codemirror).then(res => {
+      this.setState({ codemirror: res.data });
+    });
+  };
+  handleChange = async (editor, data, newCode) => {
+    await this.setState({ codemirror: newCode });
+  };
   render() {
     return (
       <Container>
         <CodeMirror
           value={this.state.codemirror}
           name="codemirror"
+          onBeforeChange={(editor, data, codemirror) => {
+            this.setState({ codemirror });
+          }}
           onChange={this.handleChange}
           options={{ mode: "javascript", theme: "night", lineNumbers: true }}
         />
-        <SendItButton onClick={this.sendIt}>
-          send it!
-        </SendItButton>
+        <SendItButton onClick={this.sendIt}>send it!</SendItButton>
       </Container>
     );
   }

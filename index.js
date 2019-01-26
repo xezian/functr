@@ -13,18 +13,22 @@ app.use(express.static(staticPath));
 app.use(bodyParser.json());
 
 app.get("/api/refresh", (req, res) => {
-  refreshFile("./methods/tmp/test.js").then(()=>{
-    console.log("refreshing test.js " + Date());
-    refreshFile("./methods/tmp/functr.js").then(()=>{
-      console.log("refreshing functr.js " + Date());
-      res.send(`<a href="/">refreshed</a>`);
-    }).catch(err=>{
-      console.log(err);
+  refreshFile("./methods/tmp/test.js")
+    .then(() => {
+      console.log("refreshing test.js " + Date());
+      refreshFile("./methods/tmp/functr.js")
+        .then(() => {
+          console.log("refreshing functr.js " + Date());
+          res.send(`<a href="/">refreshed</a>`);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-  }).catch(err=>{
-    console.log(err);
-  });
-})
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.post("/api/testfunction", (req, res) => {
   testFunction(req.body)
@@ -37,14 +41,14 @@ app.post("/api/testfunction", (req, res) => {
 });
 
 app.post("/api/testfunctr", (req, res) => {
-  console.log('hereiam')
+  console.log("hereiam");
   testFunctr(req.body)
-  .then(results => {
-    res.send(results);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-})
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
