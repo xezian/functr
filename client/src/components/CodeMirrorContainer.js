@@ -20,10 +20,11 @@ const SendItButton = styled.button`
 
 export default class CodeMirrorContainer extends Component {
   state = {
-    codemirror: ""
+    codemirror: "",
+    functName: "trialFunct"
   };
   sendIt = () => {
-    API.submitCode(this.state.codemirror).then(res => {
+    API.submitCode(this.state.codemirror, this.state.functName).then(res => {
       this.setState({ codemirror: res.data });
     });
   };

@@ -6,11 +6,28 @@ const testFunctr = data => {
     console.log(data);
     refreshFile("./methods/tmp/functr.js")
       .then(() => {
-        res(data.code + " hello from backend");
-      })
-      .catch(err => {
-        rej(err);
+        fs.appendFile("./methods/tmp/functr.js", data.code + "\n", err => {
+          if (err) {
+            rej(err);
+          }
+          fs.appendFile(
+            "./methods/tmp/functr.js",
+            `module.exports = ${data.functName};`,
+          async err => {
+            if (err) {
+              rej(err);
+            }
+            const functr = await require("./tmp/functr.js");
+            const results = await functr();
+            console.log(results);
+            res(results);
+          }
+        );
       });
+    })
+    .catch(err => {
+      rej(err);
+    });
   }).catch(err => {
     console.log(err);
   });
