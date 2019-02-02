@@ -19,7 +19,6 @@ const testFunctr = data => {
             }
             const functr = await require("./tmp/functr.js");
             const results = await functr();
-            console.log(results);
             res(results);
           }
         );

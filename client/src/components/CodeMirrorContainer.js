@@ -20,7 +20,7 @@ const SendItButton = styled.button`
 
 export default class CodeMirrorContainer extends Component {
   state = {
-    codemirror: "",
+    codemirror: "// hello \nfunction trialFunct() {\n\t// write some kind of function that returns something in here and then click send it!\n\t\n};",
     functName: "trialFunct"
   };
   sendIt = () => {
@@ -37,11 +37,17 @@ export default class CodeMirrorContainer extends Component {
         <CodeMirror
           value={this.state.codemirror}
           name="codemirror"
+          editorDidMount={(editor) => {
+            editor.focus();
+          }}
           onBeforeChange={(editor, data, codemirror) => {
             this.setState({ codemirror });
           }}
+          cursor={{
+            line: 3
+          }}
           onChange={this.handleChange}
-          options={{ mode: "javascript", theme: "night", lineNumbers: true }}
+          options={{ mode: "javascript", theme: "night", lineNumbers: true, }}
         />
         <SendItButton onClick={this.sendIt}>send it!</SendItButton>
       </Container>
