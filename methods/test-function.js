@@ -5,7 +5,7 @@ const testFunction = data => {
   console.log(data);
   return new Promise((res, rej) => {
     refreshFile("./methods/tmp/test.js")
-      .then(responz => {
+      .then(() => {
         fs.appendFile("./methods/tmp/test.js", data.code + "\n", err => {
           if (err) {
             rej(err);

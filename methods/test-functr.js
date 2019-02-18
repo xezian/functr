@@ -6,7 +6,29 @@ const testFunctr = data => {
     console.log(data);
     refreshFile("./methods/tmp/functr.js")
       .then(() => {
-        res(data.code + " hello from backend");
+        fs.appendFile("./methods/tmp/functr.js", data.code + "\n", err => {
+          if (err) {
+            rej(err);
+          }
+          fs.appendFile(
+            "./methods/tmp/functr.js",
+            `const testFunc = () => {
+  const result = functr();
+  return result;
+};
+module.exports = testFunc;
+`,
+            async err => {
+              if (err) {
+                rej(err);
+              }
+              const functr = await require("./tmp/functr.js");
+              const results = await functr();
+              console.log(results);
+              res(results);
+            }
+          );
+        });
       })
       .catch(err => {
         rej(err);

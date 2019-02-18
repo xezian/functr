@@ -41,7 +41,6 @@ app.post("/api/testfunction", (req, res) => {
 });
 
 app.post("/api/testfunctr", (req, res) => {
-  console.log("hereiam");
   testFunctr(req.body)
     .then(results => {
       res.send(results);
