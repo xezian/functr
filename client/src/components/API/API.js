@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export default {
-    submitCode: (code) => {
+    submitCode: (code, functName) => {
         return new Promise((res, rej)=> {
             const dataPkg = {
                 code: code,
-                // funcName: funcName,
+                functName: functName,
                 // args: args,
                 // expects: expects
             };

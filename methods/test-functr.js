@@ -34,7 +34,7 @@ module.exports = testFunc;
         rej(err);
       });
   }).catch(err => {
-    console.log(err);
+    rej(err);
   });
 };
 

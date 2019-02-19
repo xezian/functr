@@ -1,6 +1,6 @@
 // this is a new file
-function functr(){
-	return 'hello';
+function functr() {
+  return "hello";
 }
 const testFunc = () => {
   const result = functr();
