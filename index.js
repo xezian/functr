@@ -19,7 +19,7 @@ app.get("/api/refresh", (req, res) => {
       refreshFile("./methods/tmp/functr.js")
         .then(() => {
           console.log("refreshing functr.js " + Date());
-          res.send(`<a href="/">refreshed</a>`);
+          res.send(`refreshed`);
         })
         .catch(err => {
           console.log(err);

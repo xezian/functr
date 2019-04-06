@@ -12,44 +12,122 @@ const Container = styled.div`
   }
 `;
 
-const SendItButton = styled.button`
+const RightButton = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
 `;
 
+const LeftButton = styled.button`
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+`;
+
+const GutterButton = styled.button`
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  z-index: 4;
+`;
+
+const FloatingDiv = styled.div`
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100vw;
+  color: white;
+`;
+const Top = styled.div`
+  position: absolute;
+  font-family: monospace;
+  top: 4px;
+  left: 34px;
+  width: 100vw;
+  color: #8900d1;
+`;
+
+const info = [
+  { top: "// maybe the function is you" },
+  { top: "// were you wondering what the arguments are like?" },
+  { top: "// for now chill" },
+  { top: "// maybe it's a feature, maybe it's a bug" },
+  { top: "// politeness is key", floatingDiv: "🔑" },
+  { top: "// emptiness is key" },
+  { top: "// distance is a value" },
+  {
+    top:
+      "// what if the argument included a function? could you make it it fun?"
+  }
+];
+
 export default class CodeMirrorContainer extends Component {
   state = {
-    codemirror: "// hello \nfunction trialFunct() {\n\t// write some kind of function that returns something in here and then click send it!\n\t\n};",
-    functName: "trialFunct"
+    top: "// hello \n",
+    code: "\nfunction functr() {\n\t// welcome to functr!\n\t\n};",
+    floatingDiv: "",
+    position: 0,
+    info: info
   };
   sendIt = () => {
-    API.submitCode(this.state.codemirror, this.state.functName).then(res => {
-      this.setState({ codemirror: res.data });
+    API.submitCode(this.state.code, this.state.functName).then(res => {
+      this.setState({ code: res.data });
     });
   };
-  handleChange = async (editor, data, newCode) => {
-    await this.setState({ codemirror: newCode });
+  resetIt = e => {
+    API.refresh().then(res => {
+      this.setState({ floatingDiv: res });
+      setTimeout(() => {
+        this.setState({ floatingDiv: "" });
+      }, 5000);
+      this.setState({
+        top: "// hello \n",
+        code: "\nfunction functr() {\n\t// welcome to functr!\n\t\n};"
+      });
+    });
+  };
+  questionIt = () => {
+    const { position, info } = this.state;
+    if (position + 1 < info.length) {
+      this.setState(info[position]);
+      this.setState({ position: position + 1 });
+      if (this.state.floatingDiv !== "") {
+        setTimeout(() => {
+          this.setState({ floatingDiv: "" });
+        }, 5000);
+      }
+    } else {
+      this.setState({ position: 0 });
+      this.setState(info[position]);
+    }
+  };
+  handleChange = (editor, data, newCode) => {
+    this.setState({ code: newCode });
   };
   render() {
+    const { floatingDiv, code, top } = this.state;
     return (
       <Container>
         <CodeMirror
-          value={this.state.codemirror}
+          value={code}
           name="codemirror"
-          editorDidMount={(editor) => {
+          editorDidMount={editor => {
             editor.focus();
           }}
-          onBeforeChange={(editor, data, codemirror) => {
-            this.setState({ codemirror });
+          onBeforeChange={(editor, data, code) => {
+            this.setState({ code });
           }}
           cursor={{
             line: 3
           }}
           onChange={this.handleChange}
-          options={{ mode: "javascript", theme: "night", lineNumbers: true, }}
+          options={{ mode: "javascript", theme: "night", lineNumbers: true }}
         />
-        <SendItButton onClick={this.sendIt}>send it!</SendItButton>
+        <Top>{top}</Top>
+        <RightButton onClick={this.sendIt}>send it!</RightButton>
+        <LeftButton onClick={this.resetIt}>reset it!</LeftButton>
+        <GutterButton onClick={this.questionIt}>?</GutterButton>
+        <FloatingDiv>{floatingDiv}</FloatingDiv>
       </Container>
     );
   }
