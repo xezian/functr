@@ -40,5 +40,5 @@ submit.addEventListener("click", () => {
 
 clear.addEventListener("click", () => {
   const results = document.getElementById("results");
-  results.innerHTML = "<a href='/'>" + results + "</a>";
+  results.innerHTML = "";
 });
