@@ -9,6 +9,8 @@ const port = 6789;
 
 const staticPath = path.join(__dirname, "/public");
 
+require("dotenv").config();
+
 app.use(express.static(staticPath));
 app.use(bodyParser.json());
 

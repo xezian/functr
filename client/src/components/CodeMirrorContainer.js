@@ -15,12 +15,14 @@ const Container = styled.div`
 const RightButton = styled.button`
   position: absolute;
   bottom: 0;
+  z-index: 4;
   right: 0;
 `;
 
 const LeftButton = styled.button`
   position: absolute;
   bottom: 0;
+  z-index: 4;
   left: 30px;
 `;
 
