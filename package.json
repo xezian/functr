@@ -12,7 +12,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "codemirror": "^5.42.2",
-    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "fs": "^0.0.1-security"
   },

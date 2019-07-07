@@ -12,8 +12,7 @@ const testFunctr = data => {
           }
           fs.appendFile(
             "./methods/tmp/functr.js",
-            `const sjhbskjbkskjb = require("./secrets/secrets.js");
-const testFunc = () => {
+            `const testFunc = () => {
   const result = functr();
   return result;
 };
